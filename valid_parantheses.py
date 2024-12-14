@@ -45,3 +45,27 @@ class Solution(object):
 
 obj = Solution()
 print(obj.isValid("(]"))
+
+
+## Using Stacks
+class Sol(object):
+    def isValid(self, s):
+        stack = []
+        matching_map = {
+            "}": "{",
+            "]": "[",
+            ")": "(",
+        }
+        for i, char in enumerate(s):
+            if char in matching_map.values():
+                stack.append(char)
+            elif char in matching_map.keys():
+                if not stack or stack[-1] != matching_map[char]:
+                    return False
+                stack.pop()
+
+        return len(stack) == 0
+
+
+stack_obj = Sol()
+print(stack_obj.isValid("([)]"))
